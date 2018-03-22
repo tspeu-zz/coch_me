@@ -48,7 +48,8 @@ export class HomePage {
     
     let alert = this.alertCtrl.create({
       title: '' + event.title,
-      subTitle: 'From: ' + start + '<br>To: ' + end,
+       
+      subTitle: '' + event.persona + 'From: ' + start + '<br>To: ' + end,
       buttons: ['OK']
     })
     alert.present();
