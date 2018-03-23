@@ -24,7 +24,7 @@ export class HomePage {
     modal.onDidDismiss(data => {
       if (data) {
         let eventData = data;
- 
+        console.log("--data->", eventData);
         eventData.startTime = new Date(data.startTime);
         eventData.endTime = new Date(data.endTime);
  
@@ -38,8 +38,10 @@ export class HomePage {
     });
   }
  
-  onViewTitleChanged(title) {
-    this.viewTitle = title;
+  onViewTitleChanged(event) {
+    console.log("onViewTitleChanged event-->", event);
+    this.viewTitle = event.persona;
+    console.log("this.viewTitle-->", this.viewTitle);
   }
  
   onEventSelected(event) {
@@ -47,11 +49,11 @@ export class HomePage {
     let end = moment(event.endTime).format('LLLL');
     
     let alert = this.alertCtrl.create({
-      title: '' + event.title,
-       
-      subTitle: '' + event.persona + 'From: ' + start + '<br>To: ' + end,
+      title: '' + event.title,      
+      subTitle: '<strong>' + event.persona + '</strong><br>From: ' + start + '<br>To: ' + end,
       buttons: ['OK']
     })
+    console.log("onEventSelected-->alert",alert);
     alert.present();
   }
  
