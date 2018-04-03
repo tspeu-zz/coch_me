@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController, AlertController } from 'ionic-angular';
 import * as moment from 'moment';
+import { LocaldataProvider } from '../../providers/localdata/localdata';
+import { DatosLocal} from '../../providers/localdata/datosLocal'; 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -8,9 +11,11 @@ import * as moment from 'moment';
 export class HomePage {
 
   eventSource = [];
-  viewTitle: string;
+  viewTitle= "App test";
   selectedDay = new Date();
- 
+  
+  title: string;
+  
   calendar = {
     mode: 'month',
     currentDate: new Date()
@@ -18,10 +23,22 @@ export class HomePage {
   
   public tap: number = 0;
   public press: number = 0;
-
+   
+  datosLocal : DatosLocal[];
   
-  constructor(public navCtrl: NavController, private modalCtrl: ModalController, private alertCtrl: AlertController) { }
- 
+  constructor(public navCtrl: NavController, private modalCtrl: ModalController, 
+    private alertCtrl: AlertController, private localData: LocaldataProvider) {
+      
+    }
+    
+    ionViewDidLoad(){
+      // this.datosLocal.push(this.localData.getDatosLocal);
+      this.localData.getDatosLocal;
+
+      console.log('this.localData->',  this.localData.datos);
+      // console.log('this.datosLocal->',  this.datosLocal);
+    }
+
   addEvent() {
     let modal = this.modalCtrl.create('EventModalPage', {selectedDay: this.selectedDay});
     modal.present();
@@ -34,6 +51,9 @@ export class HomePage {
  
         let events = this.eventSource;
         events.push(eventData);
+
+        this.localData.setDatosLocaL(eventData);
+
         this.eventSource = [];
         setTimeout(() => {
           this.eventSource = events;
@@ -44,8 +64,8 @@ export class HomePage {
  
   onViewTitleChanged(event) {
     console.log("onViewTitleChanged event-->", event);
-    this.viewTitle = event.persona;
-    console.log("this.viewTitle-->", this.viewTitle);
+     this.title = event;
+    // console.log("this.viewTitle-->", this.viewTitle);
   }
  
   onEventSelected(event) {

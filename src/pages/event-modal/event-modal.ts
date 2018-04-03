@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ActionSheetController } from 'ionic-angular';
 import * as moment from 'moment';
+import { LocaldataProvider } from '../../providers/localdata/localdata';
 
 @IonicPage()
 @Component({
@@ -24,7 +25,10 @@ export class EventModalPage {
 
 
   constructor(public navCtrl: NavController, private navParams: NavParams, 
-    public viewCtrl: ViewController, public actionSheetCtrl: ActionSheetController) {
+              public viewCtrl: ViewController, 
+              public actionSheetCtrl: ActionSheetController, 
+              private localDataProvider : LocaldataProvider) {
+
       let preselectedDate = moment(this.navParams.get('selectedDay')).format();
       this.event.startTime = preselectedDate;
       this.event.endTime = preselectedDate;
@@ -33,13 +37,18 @@ export class EventModalPage {
       this.event.persona =this.personas[3];
   }
 
-  // ionViewDidLoad() {console.log('ionViewDidLoad EventModalPage');}
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad EventModalPage');
+    // this.localDataProvider.getDatosLocal();
+    // console.log('this.localDataProvider-->', this.localDataProvider.datos); 
+  }
 
   cancel() {
     this.viewCtrl.dismiss();
   }
  
   save() {
+    // this.localDataProvider.setDatosLocaL();
     this.viewCtrl.dismiss(this.event);
   }
 
