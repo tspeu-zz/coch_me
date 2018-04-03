@@ -8,7 +8,7 @@ import * as moment from 'moment';
 export class HomePage {
 
   eventSource = [];
-  viewTitle: string;
+  viewTitle = 'COCHE ITER';
   selectedDay = new Date();
  
   calendar = {
@@ -16,7 +16,9 @@ export class HomePage {
     currentDate: new Date()
   };
   
-  constructor(public navCtrl: NavController, private modalCtrl: ModalController, private alertCtrl: AlertController) { }
+  constructor(public navCtrl: NavController, private modalCtrl: ModalController, private alertCtrl: AlertController) {
+    
+   }
  
   addEvent() {
     let modal = this.modalCtrl.create('EventModalPage', {selectedDay: this.selectedDay});
