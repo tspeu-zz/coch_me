@@ -16,6 +16,10 @@ export class HomePage {
     currentDate: new Date()
   };
   
+  public tap: number = 0;
+  public press: number = 0;
+
+  
   constructor(public navCtrl: NavController, private modalCtrl: ModalController, private alertCtrl: AlertController) { }
  
   addEvent() {
@@ -59,6 +63,14 @@ export class HomePage {
  
   onTimeSelected(ev) {
     this.selectedDay = ev.selectedTime;
+  }
+
+  // 
+  pressEvent(e) {
+    this.press++;
+  }
+  tapEvent(e) {
+    this.tap++;
   }
 
 }
