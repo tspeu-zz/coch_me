@@ -27,7 +27,8 @@ export class HomePage {
   datosLocal : DatosLocal[];
   
   constructor(public navCtrl: NavController, private modalCtrl: ModalController, 
-    private alertCtrl: AlertController, private localData: LocaldataProvider) {
+              private alertCtrl: AlertController, 
+              private localData: LocaldataProvider) {
       
     }
     
