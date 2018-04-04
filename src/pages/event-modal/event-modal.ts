@@ -22,7 +22,8 @@ export class EventModalPage {
   persona : string ="";
   location = ["ALCAMPO", "LIDL"];
   personas =["VIDAL", "DAVID", "FRAN", "JM"];
-
+  lugar = '';
+  colores =['blue', 'green', 'red', 'yellow'];
 
   constructor(public navCtrl: NavController, private navParams: NavParams, 
               public viewCtrl: ViewController, 
@@ -33,8 +34,13 @@ export class EventModalPage {
       this.event.startTime = preselectedDate;
       this.event.endTime = preselectedDate;
       this.event.allDay = true;
-      this.event.title = this.selectLocation(false);
-      this.event.persona =this.personas[3];
+      // this.selectLocation(false);
+      // this.event.title = this.location[1];
+      // this.event.persona =this.personas[3];
+      // this.event.color = this.colores[3];
+      
+                
+      
   }
 
   ionViewDidLoad() {
@@ -62,7 +68,9 @@ export class EventModalPage {
             this.persona = this.personas[0] ;
             this.selectLocation(true);
             this.event.persona =   this.persona;
-            console.log('this.persona', this.persona);
+            this.event.title = this.persona + " | " + this.lugar;
+            this.event.color = this.colores[0];
+            // console.log('this.persona', this.persona);
           }
         },
         {
@@ -71,7 +79,9 @@ export class EventModalPage {
             this.persona = this.personas[1] ;
             this.selectLocation(true);
             this.event.persona =   this.persona;
-            console.log('this.persona', this.persona);
+            this.event.title =this.persona + " | " + this.lugar;
+            this.event.color = this.colores[1];
+            // console.log('this.persona', this.persona);
           }
         },
         {
@@ -80,7 +90,9 @@ export class EventModalPage {
             this.persona = this.personas[2] ;
             this.selectLocation(true);
             this.event.persona =   this.persona;
-            console.log('this.persona', this.persona);
+            this.event.title = this.persona + " | " + this.lugar;
+            this.event.color = this.colores[2];
+            // console.log('this.persona', this.persona);
           }
         },
         {
@@ -89,7 +101,9 @@ export class EventModalPage {
             this.persona = this.personas[3] ;
             this.selectLocation(false);
             this.event.persona =   this.persona;
-            console.log('this.persona', this.persona);
+            this.event.title = this.persona + " | " + this.lugar;
+            this.event.color = this.colores[3];
+            // console.log('this.persona', this.persona);
           }
         },
         {
@@ -106,12 +120,12 @@ export class EventModalPage {
   }
 
   selectLocation(foo){
-    let loc =""
-      if(foo === true){
-        loc = this.location[0];
-      }else{
-         loc =this.location[1];
-      }
-    return loc;  
+   
+    if(foo === true){
+      this.lugar = this.location[0];
+    }else{
+      this.lugar = this.location[1];
+    }
+    return this.lugar;  
   }
 }
