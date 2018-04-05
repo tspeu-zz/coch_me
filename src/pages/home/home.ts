@@ -16,7 +16,9 @@ export class HomePage {
   // eventSource;
 
   eventSource = [];
+
   viewTitle= "App test";
+
   selectedDay = new Date();
   
   title: string;
@@ -26,6 +28,7 @@ export class HomePage {
     currentDate: new Date()
   };
   
+
   public tap: number = 0;
   public press: number = 0;
    
@@ -55,6 +58,7 @@ export class HomePage {
       console.log('this.localData->',  this.localData);
       console.log('this.datosLocal->',  this.datosLocal);
     }
+
 
   addEvent() {
     let modal = this.modalCtrl.create('EventModalPage', {selectedDay: this.selectedDay});
