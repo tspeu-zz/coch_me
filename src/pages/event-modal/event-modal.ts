@@ -35,18 +35,11 @@ export class EventModalPage {
       this.event.endTime = preselectedDate;
       this.event.allDay = true;
 
-      // this.selectLocation(false);
-      // this.event.title = this.location[1];
-      // this.event.persona =this.personas[3];
-      // this.event.color = this.colores[3];
-      
-                
-      
-
       this.selectLocation(false);
       this.event.title = this.location[1];
       this.event.persona =this.personas[3];
       this.event.color = this.colores[3];
+
 
   }
 
@@ -80,6 +73,7 @@ export class EventModalPage {
             this.event.color = this.colores[0];
             // console.log('this.persona', this.persona);
 
+
           }
         },
         {
@@ -88,10 +82,10 @@ export class EventModalPage {
             this.persona = this.personas[1] ;
             this.selectLocation(true);
             this.event.persona =   this.persona;
-
             this.event.title =this.persona + " | " + this.lugar;
             this.event.color = this.colores[1];
             // console.log('this.persona', this.persona);
+
 
           }
         },
@@ -104,7 +98,6 @@ export class EventModalPage {
             this.event.title = this.persona + " | " + this.lugar;
             this.event.color = this.colores[2];
             // console.log('this.persona', this.persona);
-
           }
         },
         {
@@ -113,7 +106,6 @@ export class EventModalPage {
             this.persona = this.personas[3] ;
             this.selectLocation(false);
             this.event.persona =   this.persona;
-
             this.event.title = this.lugar;
             this.event.color = this.colores[3];
             console.log('this.event', this.event);
@@ -133,6 +125,7 @@ export class EventModalPage {
   }
 
   selectLocation(foo){
+
       if(foo === true){
         this.lugar = this.location[0];
       }else{
