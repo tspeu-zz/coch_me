@@ -15,7 +15,11 @@
 </ion-header>
 
 <ion-content padding>
-  <calendar  (click)="addEvent()"
+  <div>
+      <h2 ion-text color="primary">{{title}}</h2>
+      
+  </div>
+  <calendar  (press)="addEvent()"
    [eventSource]="eventSource"
     [calendarMode]="calendar.mode"
     [currentDate]="calendar.currentDate"
@@ -23,6 +27,22 @@
     (onTitleChanged)="onViewTitleChanged($event)"
     (onTimeSelected)="onTimeSelected($event)"
     step="30"
-    class="calendar">
+    class="calendar"
+    >
   </calendar>
+
+  <br>
+
+  <!-- <ion-card (tap)="tapEvent($event)">
+    <ion-item>
+      Tapped: {{tap}} times
+    </ion-item>
+  </ion-card>
+
+  <ion-card (press)="pressEvent($event)">
+    <ion-item>
+      Pressed: {{press}} times
+    </ion-item>
+  </ion-card> -->
+
 </ion-content>

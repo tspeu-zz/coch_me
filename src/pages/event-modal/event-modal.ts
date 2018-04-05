@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ActionSheetController } from 'ionic-angular';
 import * as moment from 'moment';
+import { LocaldataProvider } from '../../providers/localdata/localdata';
 
 @IonicPage()
 @Component({
@@ -25,25 +26,36 @@ export class EventModalPage {
   colores =['blue', 'green', 'red', 'yellow'];
 
   constructor(public navCtrl: NavController, private navParams: NavParams, 
-    public viewCtrl: ViewController, public actionSheetCtrl: ActionSheetController) {
+              public viewCtrl: ViewController, 
+              public actionSheetCtrl: ActionSheetController, 
+              private localDataProvider : LocaldataProvider) {
 
       let preselectedDate = moment(this.navParams.get('selectedDay')).format();
       this.event.startTime = preselectedDate;
       this.event.endTime = preselectedDate;
       this.event.allDay = true;
-      this.selectLocation(false);
-      this.event.title = this.location[1];
-      this.event.persona =this.personas[3];
-      this.event.color = this.colores[3];
+
+      // this.selectLocation(false);
+      // this.event.title = this.location[1];
+      // this.event.persona =this.personas[3];
+      // this.event.color = this.colores[3];
+      
+                
+      
   }
 
-  // ionViewDidLoad() {console.log('ionViewDidLoad EventModalPage');}
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad EventModalPage');
+    // this.localDataProvider.getDatosLocal();
+    // console.log('this.localDataProvider-->', this.localDataProvider.datos); 
+  }
 
   cancel() {
     this.viewCtrl.dismiss();
   }
  
   save() {
+    // this.localDataProvider.setDatosLocaL();
     this.viewCtrl.dismiss(this.event);
   }
 
@@ -57,9 +69,10 @@ export class EventModalPage {
             this.persona = this.personas[0] ;
             this.selectLocation(true);
             this.event.persona =   this.persona;
-            this.event.title = this.lugar;
+
+            this.event.title = this.persona + " | " + this.lugar;
             this.event.color = this.colores[0];
-            console.log('this.event', this.event);
+            // console.log('this.persona', this.persona);
           }
         },
         {
@@ -68,9 +81,9 @@ export class EventModalPage {
             this.persona = this.personas[1] ;
             this.selectLocation(true);
             this.event.persona =   this.persona;
-            this.event.title = this.lugar;
+            this.event.title =this.persona + " | " + this.lugar;
             this.event.color = this.colores[1];
-            console.log('this.event', this.event);
+            // console.log('this.persona', this.persona);
           }
         },
         {
@@ -79,9 +92,9 @@ export class EventModalPage {
             this.persona = this.personas[2] ;
             this.selectLocation(true);
             this.event.persona =   this.persona;
-            this.event.title = this.lugar;
+            this.event.title = this.persona + " | " + this.lugar;
             this.event.color = this.colores[2];
-            console.log('this.event', this.event);
+            // console.log('this.persona', this.persona);
           }
         },
         {
@@ -90,9 +103,9 @@ export class EventModalPage {
             this.persona = this.personas[3] ;
             this.selectLocation(false);
             this.event.persona =   this.persona;
-            this.event.title = this.lugar;
+            this.event.title = this.persona + " | " + this.lugar;
             this.event.color = this.colores[3];
-            console.log('this.event', this.event);
+            // console.log('this.persona', this.persona);
           }
         },
         {
@@ -110,11 +123,12 @@ export class EventModalPage {
 
   selectLocation(foo){
    
-      if(foo === true){
-        this.lugar = this.location[0];
-      }else{
-        this.lugar = this.location[1];
-      }
+    if(foo === true){
+      this.lugar = this.location[0];
+    }else{
+      this.lugar = this.location[1];
+    }
+
     return this.lugar;  
   }
 }
