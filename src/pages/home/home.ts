@@ -30,8 +30,8 @@ export class HomePage {
   
   public tap: number = 0;
   public press: number = 0;
-   
-  datosLocal = [];
+  
+  datosGuardados = [];
 
   datos = [{
       startTime:  "Tue Apr 03",
@@ -44,35 +44,50 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, private modalCtrl: ModalController, 
               private alertCtrl: AlertController, 
-              private localData: LocaldataProvider) {
-      
+              private localDataService: LocaldataProvider) {
+
+
     }
     
     ionViewDidLoad(){
-      this.datosLocal = this.localData.getDatosLocal();
-      this.localData.getDatosLocal();
-
+      // this.localDataService.getDatosLocal();
+      // console.log('ETP--|this.localDataService servicio->',  this.localDataService);
+      this.localDataService.getData().then((todos) => {
+        if(todos){
+          let data = todos;
+          this.datosGuardados.push(data);
+          console.log('this.datosGuardados--> ',this.datosGuardados);
+        }
+    });  
       this.loadEvents();
+      this.myCalendar.loadEvents();
 
-      console.log('this.localData->',  this.localData);
-      console.log('this.datosLocal->',  this.datosLocal);
+      // this.datosLocal = this.localDataService.getDatosLocal();
+      // console.log('AKI --|this.datosLocal---->',  this.datosLocal);
     }
 
 
   addEvent() {
     let modal = this.modalCtrl.create('EventModalPage', {selectedDay: this.selectedDay});
     modal.present();
-    modal.onDidDismiss(data => {
+    modal.onDidDismiss( data => {
       if (data) {
         let eventData = data;
+
         console.log("--data->", eventData);
+        
         eventData.startTime = new Date(data.startTime);
         eventData.endTime =   new Date(data.endTime);
- 
+        
         let events = this.eventSource;
+        
+        console.log('AAAADEvent -->this.eventSource >', this.eventSource);
         events.push(eventData);
+        
+        // this.localDataService.setDatosLocaL(eventData);
+        this.localDataService.save(eventData);
+        console.log("--> save->", eventData);
 
-        this.localData.setDatosLocaL(eventData);
         // this.myCalendar
         this.eventSource = [];
         setTimeout(() => {
@@ -81,13 +96,13 @@ export class HomePage {
       }
     });
   }
- 
+
   onViewTitleChanged(event) {
     console.log("onViewTitleChanged event-->", event);
-     this.title = event;
+    this.title = event;
     // console.log("this.viewTitle-->", this.viewTitle);
   }
- 
+
   onEventSelected(event) {
     let start = moment(event.startTime).format('LLLL');
     let end = moment(event.endTime).format('LLLL');
@@ -96,8 +111,8 @@ export class HomePage {
       title: '' + event.title,      
       subTitle: '<strong>' + event.persona + '</strong><br>From: ' + start + '<br>To: ' + end,
       buttons: ['OK']
-    })
-    console.log("onEventSelected-->alert",alert);
+    });
+    console.log("AKI onEventSelected-->alert -->",alert);
     alert.present();
   }
  
@@ -118,7 +133,8 @@ export class HomePage {
       });
       
       console.log('loadEVENT-> this.eventSource', this.eventSource);
-      this.myCalendar.loadEvents();
+      //this.myCalendar.loadEvents();
+      
       console.log('loadEVENT-> this.myCalendar', this.myCalendar);
       
     }
@@ -128,12 +144,12 @@ export class HomePage {
     pressEvent(e) {
       this.press++;
     }
+  
     tapEvent(e) {
       this.tap++;
     }
     
   }
-  
   // loadEvents: function() {
   //   this.eventSource.push({
   //     title: 'test',

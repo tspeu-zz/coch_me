@@ -14,24 +14,40 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="home-page">
   <div>
       <h2 ion-text color="primary">{{title}}</h2>
       
   </div>
   <calendar  (press)="addEvent()"
-   [eventSource]="eventSource"
+    [eventSource]="eventSource"
     [calendarMode]="calendar.mode"
     [currentDate]="calendar.currentDate"
     (onEventSelected)="onEventSelected($event)"
     (onTitleChanged)="onViewTitleChanged($event)"
     (onTimeSelected)="onTimeSelected($event)"
-    step="30"
-    class="calendar"
-    >
+    step="30" class="calendar">
   </calendar>
 
   <br>
+  <!-- <ion-list _ngcontent-c0="" class="event-detail-container list list-md" 
+  has-bouncing="false" overflow-scroll="false">
+    <ion-item _ngcontent-c0="" class="item item-block item-md">
+      <div class="item-inner">
+        <div class="input-wrapper">
+          <ion-label class="label label-md">
+            <span _ngcontent-c0="" class="monthview-eventdetail-timecolumn">
+                all day
+            </span>
+            <span _ngcontent-c0="" class="event-detail">|  VIDAL | ALCAMPO
+            </span>
+          </ion-label>
+        </div>
+      </div>
+      <div class="button-effect"></div>
+    </ion-item>
+  </ion-list> -->
+
 
   <!-- <ion-card (tap)="tapEvent($event)">
     <ion-item>

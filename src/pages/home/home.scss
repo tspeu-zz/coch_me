@@ -1,3 +1,22 @@
 page-home {
+    
+
+    .event-detail-container{
+        // background: darkblue;
+        border-left: cornflowerblue;
+        border-left: rgb(68, 128, 240);
+        border-style: solid;
+        border-width: 1px;
+        border-bottom-color: rgb(78, 133, 235);
+        
+    }
+    .event-detail-container span {
+        color: white;
+    
+    }
+    .event-detail-container ion-item {
+        
+        background:#488aff;
+    }
 
 }

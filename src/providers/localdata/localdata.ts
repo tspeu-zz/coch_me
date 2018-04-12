@@ -22,31 +22,46 @@ export class LocaldataProvider {
   constructor( private storage:Storage) {
     console.log('Hello LocaldataProvider Provider');
   }
+  getData() {
+    console.log('get al DATA->');
+    return this.storage.get('datos'); 
+  }
+
+  save(data) {
+    console.log('salvando a DATA', data);
+    this.storage.set('datos', data);
+  }
 
   getDatosLocal() {
-    
-    this.storage.get('datosLocal').then( (data) => {
+    return this.storage.get('datosLocal').then( (data) => {
       if(data !== null){
         this.datos = data;
         console.log('aki -->data', data);
       } else {
-
-        // this.datos = [{
-        //   startTime:  Date.parse('Tue Apr 03 2018 12:00:00 GMT+0100'),
-        //   endTime:    Date.parse('Tue Apr 03 2018 12:00:00 GMT+0100'),
-        //   allDay:     true,
-        //   persona:    "JM",
-        //   color:      "yellow",
-        //   title:      "LIDL"
-        // }];
+        this.datos = [{
+          startTime:  Date.parse('Tue Apr 03 2018 12:00:00 GMT+0100'),
+          endTime:    Date.parse('Tue Apr 03 2018 12:00:00 GMT+0100'),
+          allDay:     true,
+          persona:    "JM",
+          color:      "yellow",
+          title:      "LIDL"
+        }];
       }
     });
-    return this.datos;
+  }
 
+  removeItem(data) {
+    this.storage.remove(data).then(() => {
+      console.log('item removed');
+    });
+  }
+
+  getLocalData(){
+    return this.datos;
   }
 
   setDatosLocaL(data) {
-    // this.datos = data;
+   console.log('<-- local store -->', data);
     this.storage.set('datosLocal', data); 
   }
 
