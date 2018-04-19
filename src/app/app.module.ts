@@ -7,7 +7,8 @@ import { IonicStorageModule } from '@ionic/storage';
 
 //el calendario modal 
 import { NgCalendarModule  } from 'ionic2-calendar';
-
+// otro
+// import { CalendarModule } from 'ionic2-calendar2';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -22,7 +23,8 @@ import { LocaldataProvider } from '../providers/localdata/localdata';
     NgCalendarModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    // CalendarModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

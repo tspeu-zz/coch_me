@@ -17,19 +17,21 @@ export class LocaldataProvider {
 
 //array de DATOSLOCAL
   public datos : DatosLocal[];
+  public datosGuardado = [];
 
   // public http: HttpClient,
   constructor( private storage:Storage) {
     console.log('Hello LocaldataProvider Provider');
   }
   getData() {
-    console.log('get al DATA->');
+    // console.log('get al DATA->');
     return this.storage.get('datos'); 
   }
 
   save(data) {
     console.log('salvando a DATA', data);
-    this.storage.set('datos', data);
+    this.datosGuardado.push(data);
+    this.storage.set('datos', this.datosGuardado);
   }
 
   getDatosLocal() {
@@ -39,12 +41,12 @@ export class LocaldataProvider {
         console.log('aki -->data', data);
       } else {
         this.datos = [{
-          startTime:  Date.parse('Tue Apr 03 2018 12:00:00 GMT+0100'),
-          endTime:    Date.parse('Tue Apr 03 2018 12:00:00 GMT+0100'),
-          allDay:     true,
-          persona:    "JM",
-          color:      "yellow",
-          title:      "LIDL"
+          'startTime':  Date.parse('Tue Apr 03 2018 12:00:00 GMT+0100'),
+          'endTime':    Date.parse('Tue Apr 03 2018 12:00:00 GMT+0100'),
+          'allDay':     true,
+          'persona':    "JM",
+          'color':      "yellow",
+          'title':      "LIDL"
         }];
       }
     });
