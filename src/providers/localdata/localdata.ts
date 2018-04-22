@@ -34,6 +34,11 @@ export class LocaldataProvider {
     this.storage.set('datos', this.datosGuardado);
   }
 
+  deleteData(data){
+    return this.storage.remove(data);
+  }
+
+
   getDatosLocal() {
     return this.storage.get('datosLocal').then( (data) => {
       if(data !== null){

@@ -1,18 +1,33 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { BrowserModule } from '@angular/platform-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 
-//el calendario modal 
-import { NgCalendarModule  } from 'ionic2-calendar';
-// otro
-// import { CalendarModule } from 'ionic2-calendar2';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
-import { MyApp } from './app.component';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+
+
+//el calendario modal 
+import { NgCalendarModule } from 'ionic2-calendar';
+// firebase
+import { environment } from '../enviroment/enviroment';
 import { HomePage } from '../pages/home/home';
 import { LocaldataProvider } from '../providers/localdata/localdata';
+import { ServicesFirebaseServiceProvider } from '../providers/services-firebase-service/services-firebase-service';
+// otro
+// import { CalendarModule } from 'ionic2-calendar2';
+import { MyApp } from './app.component';
+
+
 
 @NgModule({
   declarations: [
@@ -24,6 +39,14 @@ import { LocaldataProvider } from '../providers/localdata/localdata';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+    AngularFireDatabaseModule,
+    HttpModule,
+    HttpClientModule,
+    
+    
     // CalendarModule
   ],
   bootstrap: [IonicApp],
@@ -35,7 +58,8 @@ import { LocaldataProvider } from '../providers/localdata/localdata';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    LocaldataProvider
+    LocaldataProvider,
+    ServicesFirebaseServiceProvider
   ]
 })
 export class AppModule {}

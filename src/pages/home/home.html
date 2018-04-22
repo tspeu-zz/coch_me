@@ -1,11 +1,11 @@
 <ion-header>
-  <ion-navbar color="secondary">
+  <ion-navbar color="default-primary-color">
     
       <button ion-button icon-only menuToggle>
             <ion-icon name="car"></ion-icon>
     </button>
     
-    <ion-title> COCHE ITER...</ion-title>
+    <ion-title> VAMOS PAL'ITER...</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="addEvent()">
         <ion-icon name="add"></ion-icon>
@@ -16,30 +16,68 @@
 
 <ion-content padding class="home-page">
   <div>
-      <h2 ion-text color="primary">{{title}}</h2>
-      
+      <h2 ion-text color="secondary-text-color" text-center>{{title}}</h2>
   </div>
-  <calendar  (press)="addEvent()"
+  <ion-grid>
+      <ion-row>
+        <ion-col col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3>
+          <ion-icon name="md-information-circle" color="secondary"></ion-icon>
+          <span  class="event-detail" color="secondary-text-color">mantener presionado en el día para añadir conductor</span>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+  <div>
+    <calendar  (press)="addEvent()"
     [eventSource]="eventSource"
     [calendarMode]="calendar.mode"
     [currentDate]="calendar.currentDate"
     (onEventSelected)="onEventSelected($event)"
     (onTitleChanged)="onViewTitleChanged($event)"
     (onTimeSelected)="onTimeSelected($event)"
-    step="30" class="calendar">
+    step="30" class="calendar" startHour="8" endHour="17">
   </calendar>
+</div>
+<br>
+<ion-fab right bottom>
+    <button ion-fab color="secondary">
+      <ion-icon name="arrow-dropleft"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab (click)="addEvent()" color="primaryDos"><ion-icon name="md-add"></ion-icon></button>
+      <!-- <button ion-fab (click)="addEvent()" color="accent"><ion-icon name="md-add"></ion-icon></button>
+      <button ion-fab (click)="addEvent()" color="accent-color"><ion-icon name="md-add-circle"></ion-icon></button>
+      <button ion-fab (click)="addEvent()" color="accent-color3"><ion-icon name="md-person-add"></ion-icon></button> -->
+    </ion-fab-list>
+  </ion-fab>
 
-  <br>
-  <!-- <ion-list _ngcontent-c0="" class="event-detail-container list list-md" 
+
+</ion-content>
+
+
+<!-- <ion-grid>
+    <ion-row >
+      <ion-col col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3 >
+        <span *ngFor=" let p of datosGuardados" class="event-detail">
+          |ALCAMPO {{p.persona}} | {{p.title}} </span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+      <button ion-item *ngFor="let item of datosGuardados" (click)="itemSelected(item)">
+        {{ item.persona }}
+      </button>  
+  </ion-list> -->
+  
+  <!-- <ion-list  class="event-detail-container list list-md" 
   has-bouncing="false" overflow-scroll="false">
-    <ion-item _ngcontent-c0="" class="item item-block item-md">
+    <ion-item  class="item item-block item-md">
       <div class="item-inner">
         <div class="input-wrapper">
           <ion-label class="label label-md">
-            <span _ngcontent-c0="" class="monthview-eventdetail-timecolumn">
+            <span  class="monthview-eventdetail-timecolumn">
                 all day
             </span>
-            <span _ngcontent-c0="" class="event-detail">|  VIDAL | ALCAMPO
+            <span  class="event-detail">|  VIDAL | ALCAMPO
             </span>
           </ion-label>
         </div>
@@ -60,5 +98,3 @@
       Pressed: {{press}} times
     </ion-item>
   </ion-card> -->
-
-</ion-content>

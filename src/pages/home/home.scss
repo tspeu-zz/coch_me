@@ -3,20 +3,24 @@ page-home {
 
     .event-detail-container{
         // background: darkblue;
-        border-left: cornflowerblue;
-        border-left: rgb(68, 128, 240);
+        border-left: rgb(215, 219, 247);
+        border-right: rgb(215, 219, 247);
+        border-bottom-color:rgb(215, 219, 247);
+        border-top-color:rgb(215, 219, 247);
+        border-top: #303F9F;
         border-style: solid;
         border-width: 1px;
-        border-bottom-color: rgb(78, 133, 235);
         
     }
     .event-detail-container span {
-        color: white;
+        // color: white;
+        //color: #303F9F;
+        color: #212121;
     
     }
     .event-detail-container ion-item {
         
-        background:#488aff;
+        background:white;
     }
 
 }

@@ -1,12 +1,12 @@
 
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="default-primary-color">
     <ion-buttons start>
       <button ion-button icon-only (click)="cancel()">
         <ion-icon name="close"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Quien lleva el coche?</ion-title>
+    <ion-title>Quien lleva el coche hoy?</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -14,11 +14,11 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
-      <ion-label>conductor:</ion-label>
+      <ion-label>Conductor:</ion-label>
     </ion-item> 
 
     <ion-item>
-      <ion-input type="text" placeholder="personas" 
+      <ion-input type="text" placeholder="click para añadir conductor!" 
       [(ngModel)]="event.persona" (click)="presentActionSheet()" readonly></ion-input>
     </ion-item>
 
@@ -27,7 +27,7 @@
     </ion-item>  
 
     <ion-item>
-      <ion-input type="text" placeholder="lugar" [(ngModel)]="lugar" readonly></ion-input>
+      <ion-input type="text" placeholder="lugar" [(ngModel)]="lugar" [disabled]="true"></ion-input>
     </ion-item>
 
     <!-- <ion-item>
@@ -46,7 +46,11 @@
     </ion-item> -->
   </ion-list>
  
-  <button ion-button full icon-left large (click)="save()">
-    <ion-icon name="checkmark"></ion-icon> Añadir conductor
+  <button ion-button full icon-left large (click)="save()" color="default-primary-color">
+    <ion-icon name="md-car"></ion-icon> Añadir conductor
+  </button>
+  <br>
+  <button ion-button full icon-left large (click)=" cancel()" color="danger">
+    <ion-icon name="md-close"></ion-icon>Cancelar
   </button>
 </ion-content>
