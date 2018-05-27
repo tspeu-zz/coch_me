@@ -18,7 +18,7 @@ export class ServicesFirebaseServiceProvider {
   item: Array<any> = [];
 
   constructor(private http: Http, public httpClient: HttpClient) {
-    console.log('Hello ServicesFirebaseServiceProvider Provider');
+
   }
 
   postData(conductores ) {
@@ -29,7 +29,7 @@ export class ServicesFirebaseServiceProvider {
 
     return this.http.post(_URL_DB + _CONDUCTORES, newConductores, {headers})
     .map((res) => {
-      console.log('res->', res.json());
+
       return res.json();
     });
   }
@@ -41,11 +41,10 @@ export class ServicesFirebaseServiceProvider {
 
   getUpdate(id$: string) {
     const url = `${configUrlUPDATE}/${id$}.json`;
-    console.log('configUrlUPDATE', configUrlUPDATE);
     return this.httpClient.get(url);
   }
 
-  putPresupuesto(datos: any, id$: string) {
+  putData(datos: any, id$: string) {
     const data = JSON.stringify(datos);
     const headers = new Headers({
         'Content-type': 'aplication/json'
@@ -53,16 +52,14 @@ export class ServicesFirebaseServiceProvider {
     const url = `${configUrlUPDATE}/${id$}.json`;
     return this.http.put(url, data, {headers})
           .map( res => {
-            console.log('akiiiiiiii- update',  res.json());
             return res.json();
           });
   }
 
-  delPresupuesto(id$: string) {
+  delData(id$: string) {
     const url = `${configUrlUPDATE}/${id$}.json`;
     return this.http.delete(url)
     .map( res => {
-      console.log('akiiiiiiii- delete',  res.json());
       return res.json();
     });
   }

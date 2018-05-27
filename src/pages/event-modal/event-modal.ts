@@ -35,27 +35,17 @@ export class EventModalPage {
       this.event.endTime = preselectedDate;
       this.event.allDay = true;
 
-      // this.selectLocation(false);
-      // this.event.title = this.location[1];
-      // this.event.persona =this.personas[3];
-      // this.event.color = this.colores[3];
-      
-                
-      
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EventModalPage');
-    // this.localDataProvider.getDatosLocal();
-    // console.log('this.localDataProvider-->', this.localDataProvider.datos); 
+    // console.log('ionViewDidLoad EventModalPage');
   }
 
   cancel() {
     this.viewCtrl.dismiss();
   }
- 
+
   save() {
-    // this.localDataProvider.setDatosLocaL();
     this.viewCtrl.dismiss(this.event);
   }
 
@@ -72,7 +62,6 @@ export class EventModalPage {
 
             this.event.title = this.persona + " | " + this.lugar;
             this.event.color = this.colores[0];
-            // console.log('this.persona', this.persona);
           }
         },
         {
@@ -83,7 +72,6 @@ export class EventModalPage {
             this.event.persona =   this.persona;
             this.event.title =this.persona + " | " + this.lugar;
             this.event.color = this.colores[1];
-            // console.log('this.persona', this.persona);
           }
         },
         {
@@ -94,7 +82,6 @@ export class EventModalPage {
             this.event.persona =   this.persona;
             this.event.title = this.persona + " | " + this.lugar;
             this.event.color = this.colores[2];
-            // console.log('this.persona', this.persona);
           }
         },
         {
@@ -105,30 +92,26 @@ export class EventModalPage {
             this.event.persona =   this.persona;
             this.event.title = this.persona + " | " + this.lugar;
             this.event.color = this.colores[3];
-            // console.log('this.persona', this.persona);
           }
         },
         {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
           }
         }
       ]
     });
- 
+
     actionSheet.present();
   }
 
   selectLocation(foo){
-   
     if(foo === true){
       this.lugar = this.location[0];
     }else{
       this.lugar = this.location[1];
     }
-
     return this.lugar;  
   }
 }

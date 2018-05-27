@@ -43,58 +43,19 @@
       <ion-icon name="arrow-dropleft"></ion-icon></button>
     <ion-fab-list side="left">
       <button ion-fab (click)="addEvent()" color="primaryDos"><ion-icon name="md-add"></ion-icon></button>
-      <!-- <button ion-fab (click)="addEvent()" color="accent"><ion-icon name="md-add"></ion-icon></button>
-      <button ion-fab (click)="addEvent()" color="accent-color"><ion-icon name="md-add-circle"></ion-icon></button>
-      <button ion-fab (click)="addEvent()" color="accent-color3"><ion-icon name="md-person-add"></ion-icon></button> -->
+      <button ion-fab (click)="goToOtherPage()" color="secondary2"><ion-icon name="md-add"></ion-icon></button>
+
     </ion-fab-list>
-  </ion-fab>
 
+</ion-fab>
 
+<!-- <ion-fab left bottom>
+    <button ion-fab color="secondary2"><ion-icon name="md-arrow-up"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab color="accent-color"><ion-icon name="md-person-add"></ion-icon></button>
+      <button ion-fab color="accent-color2"><ion-icon name="md-add-circle"></ion-icon></button>
+      <button ion-fab color="accent-color3"><ion-icon name="ios-add-circle-outline"></ion-icon></button>
+      <button ion-fab color="secondary2"><ion-icon name="ios-add-circle"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab> -->
 </ion-content>
-
-
-<!-- <ion-grid>
-    <ion-row >
-      <ion-col col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3 >
-        <span *ngFor=" let p of datosGuardados" class="event-detail">
-          |ALCAMPO {{p.persona}} | {{p.title}} </span>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <ion-list>
-      <button ion-item *ngFor="let item of datosGuardados" (click)="itemSelected(item)">
-        {{ item.persona }}
-      </button>  
-  </ion-list> -->
-  
-  <!-- <ion-list  class="event-detail-container list list-md" 
-  has-bouncing="false" overflow-scroll="false">
-    <ion-item  class="item item-block item-md">
-      <div class="item-inner">
-        <div class="input-wrapper">
-          <ion-label class="label label-md">
-            <span  class="monthview-eventdetail-timecolumn">
-                all day
-            </span>
-            <span  class="event-detail">|  VIDAL | ALCAMPO
-            </span>
-          </ion-label>
-        </div>
-      </div>
-      <div class="button-effect"></div>
-    </ion-item>
-  </ion-list> -->
-
-
-  <!-- <ion-card (tap)="tapEvent($event)">
-    <ion-item>
-      Tapped: {{tap}} times
-    </ion-item>
-  </ion-card>
-
-  <ion-card (press)="pressEvent($event)">
-    <ion-item>
-      Pressed: {{press}} times
-    </ion-item>
-  </ion-card> -->

@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-navbar color="default-primary-color">
     <ion-buttons start>
@@ -29,23 +28,8 @@
     <ion-item>
       <ion-input type="text" placeholder="lugar" [(ngModel)]="lugar" [disabled]="true"></ion-input>
     </ion-item>
-
-    <!-- <ion-item>
-      <ion-label>Start</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
-    </ion-item>
- 
-    <ion-item>
-      <ion-label>End</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
-    </ion-item> -->
- 
-    <!-- <ion-item >
-      <ion-label>All Day?</ion-label>
-      <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
-    </ion-item> -->
   </ion-list>
- 
+
   <button ion-button full icon-left large (click)="save()" color="default-primary-color">
     <ion-icon name="md-car"></ion-icon> Añadir conductor
   </button>

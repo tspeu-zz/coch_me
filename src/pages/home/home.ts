@@ -1,12 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, ModalController, AlertController } from 'ionic-angular';
 import * as moment from 'moment';
-import { LocaldataProvider } from '../../providers/localdata/localdata';
-//import { DatosLocal} from '../../providers/localdata/datosLocal'; 
+import { LocaldataProvider } from '../../providers/localdata/localdata'; 
 
 import { CalendarComponent } from "ionic2-calendar/calendar";
 
 import { ServicesFirebaseServiceProvider  } from '../../providers/services-firebase-service/services-firebase-service';
+
+import {GruposPage } from '../grupos/grupos';
 
 @Component({
   selector: 'page-home',
@@ -15,7 +16,6 @@ import { ServicesFirebaseServiceProvider  } from '../../providers/services-fireb
 export class HomePage {
 
   @ViewChild(CalendarComponent) myCalendar:CalendarComponent;
-  // eventSource;
 
   eventSource = [];
 
@@ -30,9 +30,6 @@ export class HomePage {
     currentDate: new Date()
   };
   
-  public tap: number = 0;
-  public press: number = 0;
-
   postUrl : string;
   conductores = [];
 
@@ -59,14 +56,9 @@ export class HomePage {
   constructor(public navCtrl: NavController, private modalCtrl: ModalController, 
               private alertCtrl: AlertController, 
               private localDataService: LocaldataProvider,
-              private firebeService: ServicesFirebaseServiceProvider ) {
-
-              
-    
-    }
+              private firebeService: ServicesFirebaseServiceProvider ) {}
     
     ionViewDidLoad(){
-
       this.getAllData();
       // this.myCalendar.loadEvents();
 //LOCAL STORE
@@ -85,7 +77,6 @@ export class HomePage {
       //     this.myCalendar.loadEvents();
       //   }
       // });  
-
     }
 
 
@@ -97,22 +88,15 @@ export class HomePage {
     modal.onDidDismiss( data => {
       if (data) {
         let eventData = data;
-        // console.log("--data->", eventData);
         eventData.startTime = new Date(data.startTime);
         eventData.endTime =   new Date(data.endTime);     
         let events = this.eventSource;      
-        // console.log('AAAADEvent -->this.eventSource >', this.eventSource);
         events.push(eventData);     
-        // this.localDataService.setDatosLocaL(eventData);
         this.localDataService.save(eventData);
-        // console.log("--> save->", eventData);
-        
+      
         this.firebeService.postData(eventData)
           .subscribe( (newPres) => {
-          // console.log('SALVANDO EN FIREBASE--> ENVIADO', eventData);
         });
-        
-        // this.myCalendar
         this.eventSource = [];
         setTimeout(() => {
           this.eventSource = events;
@@ -122,9 +106,7 @@ export class HomePage {
   }
 
   onViewTitleChanged(event) {
-    console.log("onViewTitleChanged event-->", event);
     this.title = event;
-    // console.log("this.viewTitle-->", this.viewTitle);
   }
 
   onEventSelected(event) {
@@ -136,7 +118,6 @@ export class HomePage {
       subTitle: '<strong>' + event.persona + '</strong><br>From: ' + start + '<br>To: ' + end,
       buttons: ['OK']
     });
-    // console.log("AKI onEventSelected-->alert -->",alert);
     alert.present();
   }
 
@@ -145,23 +126,13 @@ export class HomePage {
   }
 
   loadEvents() {
-    // this.eventSource = this.createRandomEvents();
-    // this.eventSource = this.datosGuardados;
     this.eventSource = this.conductores;
-    // console.log('this.conductores', this.conductores );
 }
-  // https://github.com/twinssbc/Ionic2-Calendar#instance-methods
   cargaEvents(data) {
-    // this.eventSource.push(eve);
-    // console.log('data', data);
       if(data && data.length == 0){
-        // console.log('data loadEvents ', data);
-        // console.log('datalenght', data.length);
         let title  = data.title;
         let startTime =  data.startTime;
-        // console.log('startTime',startTime);
         let endTime = new Date( data.endTime) ;
-        // console.log('startTime',startTime);
         let allDay = false;
         let persona = data.persona;
         let color =   data.color;
@@ -174,18 +145,11 @@ export class HomePage {
             persona: persona,
             color:   color
           });
-          // console.log('loadEVENT-> this.eventSource-->', this.eventSource);
-          // this.myCalendar.loadEvents();
-          // console.log('loadEVENT-> this.myCalendar-->', this.myCalendar);
       }else {
         for (let i=0; i< data.length; i++) {
-            // console.log('data loadEvents ', data);
-            // console.log('datalenght', data.length);
             let title  = data[i].title;
             let startTime =  data[i].startTime;
-            // console.log('startTime',startTime);
             let endTime = new Date( data[i].endTime) ;
-            // console.log('startTime',startTime);
             let allDay = false;
             let persona = data[i].persona;
             let color =   data[i].color;
@@ -205,25 +169,19 @@ export class HomePage {
       // TODO pasarlo al servicio proveedores
   getAllData() {
     this.firebeService.getConfig().subscribe( res => {
-      // console.log('res-->', res);
         // tslint:disable-next-line:forin
         for ( const id$ in res) {
           const p = res[id$];
           p.id$ = id$;
           this.conductores.push(res[id$]);
         }
-      // console.log('get datos FIREBASE', this.conductores);
 
       for (let i=0; i< this.conductores.length; i++) {        
-      
-        // console.log('this.conductores[i]->', this.conductores[i]);
-        // console.log('data loadEvents ', this.conductores);
-        // console.log('this.conductoreslenght', this.conductores.length);
         let title  = this.conductores[i].title;
         let startTime =  new Date(this.conductores[i].startTime);
-        // console.log('startTime',startTime);
+
         let endTime = new Date( this.conductores[i].endTime) ;
-        // console.log('startTime',startTime);
+
         let allDay = false;
         let persona = this.conductores[i].persona;
         let color =   this.conductores[i].color;
@@ -238,71 +196,16 @@ export class HomePage {
           });    
       }   
       this.myCalendar.loadEvents();
-  });
+    });
   }
-// 
-  pressEvent(e) {
-    this.press++;
+//TODO
+  deleteData(){}
+
+  goToOtherPage() {
+    //push another page onto the history stack
+    //causing the nav controller to animate the new page in
+    this.navCtrl.push(GruposPage);
+
   }
-
-  tapEvent(e) {
-    this.tap++;
-  }
-
-
 
 }
-
-
-
-
-
-////////////////////////////////////////////////////////
-// createRandomEvents() {
-//   var events = [];
-//   for (var i = 0; i < 50; i += 1) {
-//     var date = new Date();
-//     var eventType = Math.floor(Math.random() * 2);
-//     var startDay = Math.floor(Math.random() * 90) - 45;
-//     var endDay = Math.floor(Math.random() * 2) + startDay;
-//     var startTime;
-//     var endTime;
-//     if (eventType === 0) {
-//       startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
-//       if (endDay === startDay) {
-//           endDay += 1;
-//       }
-//       endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + endDay));
-//       events.push({
-//           title: 'All Day - ' + i,
-//           startTime: startTime,
-//           endTime: endTime,
-//           allDay: true
-//         });
-//     } else {
-//       var startMinute = Math.floor(Math.random() * 24 * 60);
-//       var endMinute = Math.floor(Math.random() * 180) + startMinute;
-//       startTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + startDay, 0, date.getMinutes() + startMinute);
-//       endTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + endDay, 0, date.getMinutes() + endMinute);
-//       events.push({
-//           title: 'Event - ' + i,
-//           startTime: startTime,
-//           endTime: endTime,
-//           allDay: false
-//       });
-//     }
-//   }
-//   return events;
-// }
-
-
-
-  // loadEvents: function() {
-  //   this.eventSource.push({
-  //     title: 'test',
-  //     startTime: startTime,
-  //     endTime: endTime,
-  //     allDay: false
-  // });
-  // this.myCalendar.loadEvents();
-  // }

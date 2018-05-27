@@ -14,25 +14,30 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
+// import { CalendarModule } from 'ionic2-calendar2';
+import { MyApp } from './app.component';
 
+import { HomePage } from '../pages/home/home';
+import { GruposPage } from '../pages/grupos/grupos';
+import { GruposPageModule } from '../pages/grupos/grupos.module';
+//GruposPageModule
 
 //el calendario modal 
 import { NgCalendarModule } from 'ionic2-calendar';
 // firebase
 import { environment } from '../enviroment/enviroment';
-import { HomePage } from '../pages/home/home';
+
 import { LocaldataProvider } from '../providers/localdata/localdata';
 import { ServicesFirebaseServiceProvider } from '../providers/services-firebase-service/services-firebase-service';
 // otro
-// import { CalendarModule } from 'ionic2-calendar2';
-import { MyApp } from './app.component';
 
 
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    GruposPage
   ],
   imports: [
     NgCalendarModule,
@@ -45,6 +50,7 @@ import { MyApp } from './app.component';
     AngularFireDatabaseModule,
     HttpModule,
     HttpClientModule,
+    // GruposPageModule
     
     
     // CalendarModule
@@ -52,7 +58,8 @@ import { MyApp } from './app.component';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage, 
+    GruposPage
   ],
   providers: [
     StatusBar,
